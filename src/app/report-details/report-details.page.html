@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Report Details
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card >
+    <ion-card-header>
+
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list *ngIf="report">
+        <ion-item>
+          <ion-label>Email:</ion-label>
+          <ion-text>{{ report.usersInfor[0].email }}</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Full Name:</ion-label>
+          <ion-text>{{ report.usersInfor[0].fullName }}</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Phone Number:</ion-label>
+          <ion-text>{{ report.usersInfor[0].phoneNumber }}</ion-text>
+        </ion-item>
+
+        <!-- Add more items for other details as needed -->
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
