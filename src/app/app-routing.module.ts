@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'reports',
     pathMatch: 'full'
   },
   {
@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'report-details',
     loadChildren: () => import('./report-details/report-details.module').then( m => m.ReportDetailsPageModule)
+  },
+  {
+    path: 'report-history',
+    loadChildren: () => import('./report-history/report-history.module').then( m => m.ReportHistoryPageModule)
   },
 ];
 

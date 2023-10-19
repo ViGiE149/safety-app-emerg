@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-reports',
@@ -21,17 +21,22 @@ export class ReportsPage implements OnInit {
   }
 
   showReportDetails(someReport: any) {
-    console.log("jjj",someReport)
+    console.log("pass data",someReport)
     // Navigating to '/specific-modules' with queryParams
-    this.router.navigate(['/report-details'], { queryParams: { report: someReport } });
-
-
+    //this.router.navigate(['/report-details'], { queryParams: { report: someReport } })
+      let navi: NavigationExtras = {
+        state: {
+         Report:someReport,
+        },
+    }
+    this.router.navigate(['/report-details'], navi);
   }
+  
   loadReports() {
     this.db.collection('reports').valueChanges().subscribe(
       (reports: any[]) => {
         this.reports = reports;
-        console.log(this.reports);
+        console.log("from db",this.reports);
       },
       (error) => {
         console.error('Error fetching reports:', error);

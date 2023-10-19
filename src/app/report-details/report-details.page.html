@@ -10,17 +10,21 @@
 </ion-header>
 
 <ion-content>
-  <ion-card >
-    <ion-card-header>
-
-    </ion-card-header>
-
-    <ion-card-content>
+ 
+    
       <ion-list *ngIf="report">
+        <ion-avatar>
+          <ion-img src="{{report?.usersInfor[0].profilePictureUrl}}" alt="Profile Image">edit</ion-img>
+        </ion-avatar>
         <ion-item>
-          <ion-label>Email:</ion-label>
-          <ion-text>{{ report.usersInfor[0].email }}</ion-text>
+          <ion-label>Type:</ion-label>
+          <ion-text>{{ report.reportType }}</ion-text>
         </ion-item>
+        <ion-item>
+          <ion-label>Date:</ion-label>
+          <ion-text>{{ formatTimestamp(report.date)  }}</ion-text>
+        </ion-item>
+
 
         <ion-item>
           <ion-label>Full Name:</ion-label>
@@ -28,13 +32,73 @@
         </ion-item>
 
         <ion-item>
-          <ion-label>Phone Number:</ion-label>
-          <ion-text>{{ report.usersInfor[0].phoneNumber }}</ion-text>
+          <ion-label>Email:</ion-label>
+          <ion-text>{{ report.usersInfor[0].email }}</ion-text>
         </ion-item>
 
+        
+
+        <ion-item>
+          <ion-label>Phone Number:</ion-label>
+          <ion-text  class="call-number" (click)="callNumber(report.usersInfor[0].phoneNumber)">{{ report.usersInfor[0].phoneNumber }}</ion-text>
+        </ion-item>
+   
+
+        <ion-item>
+          <ion-label>Next of kin:</ion-label>
+          <ion-text>{{ report.usersInfor[0].nextOfKinName}}</ion-text> -
+          <ion-text class="call-number" (click)="callNumber(report.usersInfor[0].nextOfKinName)">{{ report.usersInfor[0].phoneNumber }}</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Home Address:</ion-label>
+          <ion-text>{{ report.usersInfor[0].homeAddress }}</ion-text> 
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Work Address:</ion-label>
+          <ion-text>{{ report.usersInfor[0].workAddress}}</ion-text> 
+        </ion-item>
+      
+        <ion-item>
+          <ion-label>Blood type:</ion-label>
+          <ion-text>{{ report.usersInfor[0].bloodType }}</ion-text> 
+        </ion-item>
+
+
+        <ion-item>
+          <ion-label>Has Medical Conditions:</ion-label>
+          <ion-text>{{ report.usersInfor[0].hasMedicalConditions }}</ion-text> 
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Medical Conditions:</ion-label>
+          <ion-text>{{ report.usersInfor[0].medicalConditions }}</ion-text> 
+        </ion-item>
         <!-- Add more items for other details as needed -->
+        <ion-item>
+          <ion-label>Has Insurance Scheme:</ion-label>
+          <ion-text>{{ report.usersInfor[0].insuranceScheme}}</ion-text> 
+        </ion-item>
+        <ion-item>
+          <ion-label>Insurance Plan :</ion-label>
+          <ion-text>{{ report.usersInfor[0].insurancePlan }}</ion-text> 
+        </ion-item>
+        <ion-card>
+
+          <h3>location Infor </h3>
+          <li class="">longitude: {{ report.locationInfor?.longitude }}</li>
+          <li class="">latitude: {{ report.locationInfor?.latitude }}</li>
+          <li class="">altitudeAccuracy: {{ report.locationInfor?.altitudeAccuracy }}</li>
+          <li class="">speed: {{ report.locationInfor?.speed }}</li>
+          <li class="">timestamp: {{ report.locationInfor?.timestamp }}</li>
+          <li class="">accuracy: {{ report.locationInfor?.accuracy }}</li>
+          
+
+        </ion-card>
+
       </ion-list>
-    </ion-card-content>
-  </ion-card>
+      <ion-button  expand="block"   (click)="notify( report.reportID )">notify</ion-button>
+
 </ion-content>
 
